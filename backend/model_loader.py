@@ -3,7 +3,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndB
 from peft import PeftModel
 
 BASE_MODEL = "EleutherAI/gpt-neo-1.3B"
-ADAPTER_PATH = "models/pathology-qlora-v1"
+ADAPTER_PATH = "models/pathology-qlora-v2"
 
 def load_llm_pipeline():
     print("Loading base model...")

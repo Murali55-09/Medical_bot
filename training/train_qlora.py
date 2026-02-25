@@ -62,13 +62,14 @@ lora_config = LoraConfig(
 
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
+model.config.use_cache = False  # Important for training with LoRA + 4-bit models
 
 # -------------------------------------------------
 # 7️⃣ Load dataset
 # -------------------------------------------------
 dataset = load_dataset(
     "json",
-    data_files="data/finetune/pathology_train.jsonl"
+    data_files="data/finetune/pathology_train_v2.jsonl"
 )
 
 # -------------------------------------------------
@@ -102,11 +103,11 @@ tokenized_data = dataset.map(
 # 9️⃣ Training arguments (same as notebook)
 # -------------------------------------------------
 training_args = TrainingArguments(
-    output_dir="training/results",
+    output_dir="training/results_v2",
     per_device_train_batch_size=1,
     gradient_accumulation_steps=8,
     num_train_epochs=3,
-    learning_rate=2e-4,
+    learning_rate=1e-4,
     fp16=True,
     logging_steps=10,
     save_strategy="epoch",
@@ -130,7 +131,7 @@ trainer.train()
 # -------------------------------------------------
 # 1️⃣2️⃣ Save adapters + tokenizer
 # -------------------------------------------------
-save_dir = "models/pathology-qlora-v1"
+save_dir = "models/pathology-qlora-v2"
 model.save_pretrained(save_dir)
 tokenizer.save_pretrained(save_dir)
 
