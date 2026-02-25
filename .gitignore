@@ -1,5 +1,8 @@
 .venv/
 
 results/*
-classifiers/__pycache__/*
+classifier/__pycache__/*
 models/*
+training/*
+backend/__pycache__/app.cpython-310.pyc
+backend/__pycache__/model_loader.cpython-310.pyc
