@@ -11,19 +11,19 @@ from transformers import (
 from peft import LoraConfig, get_peft_model
 
 # -------------------------------------------------
-# 1️⃣ HuggingFace cache (same as notebook)
+# 1️⃣ HuggingFace cache (G drive)
 # -------------------------------------------------
 os.environ["HF_HOME"] = "G:/hf_cache"
-os.environ["TRANSFORMERS_CACHE"] = "G:/hf_cache"
 os.environ["HF_DATASETS_CACHE"] = "G:/hf_cache/datasets"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
 
 # -------------------------------------------------
-# 2️⃣ Model name
+# 2️⃣ Model Name (NON-GATED)
 # -------------------------------------------------
-model_name = "EleutherAI/gpt-neo-1.3B"
+model_name = "Qwen/Qwen2-1.5B-Instruct"
 
 # -------------------------------------------------
-# 3️⃣ BitsAndBytes quantization (QLoRA)
+# 3️⃣ QLoRA 4-bit Configuration
 # -------------------------------------------------
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -37,9 +37,10 @@ bnb_config = BitsAndBytesConfig(
 # -------------------------------------------------
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right"
 
 # -------------------------------------------------
-# 5️⃣ Load base model
+# 5️⃣ Load Base Model (4-bit)
 # -------------------------------------------------
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
@@ -49,12 +50,12 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 # -------------------------------------------------
-# 6️⃣ Apply LoRA (same as notebook)
+# 6️⃣ Apply LoRA
 # -------------------------------------------------
 lora_config = LoraConfig(
     r=8,
     lora_alpha=16,
-    target_modules=["q_proj", "v_proj"],
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
     lora_dropout=0.05,
     bias="none",
     task_type="CAUSAL_LM",
@@ -62,10 +63,9 @@ lora_config = LoraConfig(
 
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
-model.config.use_cache = False  # Important for training with LoRA + 4-bit models
 
 # -------------------------------------------------
-# 7️⃣ Load dataset
+# 7️⃣ Load Dataset
 # -------------------------------------------------
 dataset = load_dataset(
     "json",
@@ -73,7 +73,7 @@ dataset = load_dataset(
 )
 
 # -------------------------------------------------
-# 8️⃣ Format + tokenize (IMPORTANT PART)
+# 8️⃣ Format + Tokenize
 # -------------------------------------------------
 def format_data(example):
     prompt = (
@@ -89,9 +89,7 @@ def format_data(example):
         max_length=512,
     )
 
-    # 🔑 THIS FIXES TRAINER LOSS ERROR
     tokenized["labels"] = tokenized["input_ids"].copy()
-
     return tokenized
 
 tokenized_data = dataset.map(
@@ -100,13 +98,13 @@ tokenized_data = dataset.map(
 )
 
 # -------------------------------------------------
-# 9️⃣ Training arguments (same as notebook)
+# 9️⃣ Training Arguments (Stable Settings)
 # -------------------------------------------------
 training_args = TrainingArguments(
-    output_dir="training/results_v2",
+    output_dir="models/pathology-qwen-qlora",
     per_device_train_batch_size=1,
     gradient_accumulation_steps=8,
-    num_train_epochs=3,
+    num_train_epochs=4,
     learning_rate=1e-4,
     fp16=True,
     logging_steps=10,
@@ -129,11 +127,10 @@ trainer = Trainer(
 trainer.train()
 
 # -------------------------------------------------
-# 1️⃣2️⃣ Save adapters + tokenizer
+# 1️⃣2️⃣ Save Adapters + Tokenizer
 # -------------------------------------------------
-save_dir = "models/pathology-qlora-v2"
+save_dir = "models/pathology-qwen-qlora"
 model.save_pretrained(save_dir)
 tokenizer.save_pretrained(save_dir)
 
 print("✅ Training complete. Model saved to:", save_dir)
-  

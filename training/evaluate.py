@@ -2,12 +2,15 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
 from peft import PeftModel
 
-BASE_MODEL = "EleutherAI/gpt-neo-1.3B"
-ADAPTER_PATH = "models/pathology-qlora-v1"
+# --------------------------------------------
+# ✅ USE QWEN BASE MODEL
+# --------------------------------------------
+BASE_MODEL = "Qwen/Qwen2-1.5B-Instruct"
+ADAPTER_PATH = "models/pathology-qwen-qlora"
 
-print("Loading model for evaluation...")
+print("Loading Qwen model for evaluation...")
 
-# Same quantization config used during training
+# Same 4-bit config used during training
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
@@ -22,9 +25,12 @@ base_model = AutoModelForCausalLM.from_pretrained(
     device_map="auto"
 )
 
-# Load tokenizer + adapters
-tokenizer = AutoTokenizer.from_pretrained(ADAPTER_PATH)
+# Load tokenizer from BASE MODEL (IMPORTANT)
+tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right"
+
+# Load LoRA adapters
 model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
 
 # Build pipeline
@@ -34,43 +40,50 @@ pipe = pipeline(
     tokenizer=tokenizer
 )
 
-# ---------------------------------------------------
+# --------------------------------------------
 # Evaluation questions
-# ---------------------------------------------------
-questions = [
+# --------------------------------------------
+test_questions = [
     "What is necrosis?",
-    "What is apoptosis?",
     "What is thrombosis?",
-    "What is inflammation?",
-    "What is cirrhosis?",
-    "What is trading?",
+    "Describe necrosis.",
+    "Describe myocardial infarction.",
+    "Explain the mechanism of ischemic injury.",
+    "Explain septic shock.",
+    "Differentiate acute and chronic inflammation.",
+    "Differentiate benign and malignant tumors.",
     "What is cricket?",
     "Explain Python programming."
 ]
 
 def ask(question):
     prompt = f"""You are a medical pathology assistant.
+Answer clearly and accurately.
 
 Question:
 {question}
 
 Answer:
 """
+
     result = pipe(
         prompt,
-        max_new_tokens=80,
+        max_new_tokens=150,
         do_sample=False,
         repetition_penalty=1.2,
+        no_repeat_ngram_size=3,
         return_full_text=False
     )
+
     return result[0]["generated_text"]
+
 
 print("\nRunning evaluation...\n")
 
 with open("training/eval_results.txt", "w", encoding="utf-8") as f:
-    for q in questions:
+    for q in test_questions:
         ans = ask(q)
-        output = f"\nQUESTION: {q}\nANSWER: {ans}\n{'-'*50}\n"
+        output = f"\nQUESTION: {q}\nANSWER: {ans}\n{'-'*60}\n"
         print(output)
         f.write(output)
 

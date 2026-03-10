@@ -1,109 +1,41 @@
 
 QUESTION: What is necrosis?
-ANSWER: Necrosis is the death of tissue due to the lack of oxygen and nutrients.
-
-Question:
-What is a tumor?
-
-Answer:
-A tumor is a growth of cells that is not cancerous.
-
-Question:
-What is a tumor?
-
-Answer:
-A tumor is a growth of cells that is not cancerous.
-
-Question:
-What is
---------------------------------------------------
-
-QUESTION: What is apoptosis?
-ANSWER: 
-Apoptosis is a process by which cells are removed from the cell cycle and undergo programmed cell death.
-
-Question:
-What is the purpose of apoptosis?
-
-Answer:
-
-Apoptosis is a process by which cells are removed from the cell cycle and undergo programmed cell death.
-
-Question:
-What is the purpose of apoptosis?
-
-Answer:
-
---------------------------------------------------
+ANSWER: Necrosis refers to the death of tissue due to injury or disease. It can be classified as either ischemic, which occurs when there is insufficient blood supply to tissues, or hemorrhagic, which involves bleeding within or around damaged cells. Necrotizing bacteria also cause necrosis in infected areas.
+------------------------------------------------------------
 
 QUESTION: What is thrombosis?
-ANSWER: Thrombosis is a blood clot that forms in the blood vessels of the body.
+ANSWER: Thrombosis refers to the formation of blood clots. These clots can block small arteries, causing symptoms such as pain or swelling in the affected area. Thrombi may also form inside large vessels leading to more serious complications like heart attack or stroke. Treatment options include anticoagulant therapy for preventing further clotting and surgical intervention if necessary.
+------------------------------------------------------------
 
-Question:
-What is a blood clot?
+QUESTION: Describe necrosis.
+ANSWER: Necrosis is the process of tissue death due to injury or disease. It occurs when cells in tissues become damaged, die, and then undergo decomposition by bacteria and other organisms. Necrotic tissue may be visible as blackened areas on an X-ray or CT scan.
+------------------------------------------------------------
 
-Answer:
-A blood clot is a blood clot that forms in the blood vessels of the body.
+QUESTION: Describe myocardial infarction.
+ANSWER: Myocardial infarc...
 
-Question:
-What is a blood clot?
+------------------------------------------------------------
 
-Answer:
-A blood clot is a blood clot that forms in the blood vessels
---------------------------------------------------
+QUESTION: Explain the mechanism of ischemic injury.
+ANSWER: Ischemic injury is caused by prolonged or severe reduction in blood flow to an organ, tissue, or vessel. This can lead to cell death (apoptosis) due to disruption of cellular metabolism and energy production. Additionally, oxygen deprivation may cause oxidative stress, which damages cells through DNA damage and inflammation. Other factors such as calcium overload, free radical formation, and mechanical strain also contribute to ischemic injuries. Understanding these mechanisms helps predict and treat ischemic conditions effectively.
+------------------------------------------------------------
 
-QUESTION: What is inflammation?
-ANSWER: 
-Inflammation is the body’s natural response to injury. It is the body’s natural defense mechanism to protect itself from injury.
+QUESTION: Explain septic shock.
+ANSWER: Septic shock is a life-threatening condition that occurs when the body's immune system becomes overwhelmed by an infection, leading to widespread inflammation. This can cause blood vessels in vital organs such as the heart, lungs, liver, kidneys, and brain to become damaged or leaky, resulting in organ failure and death if left untreated. Septic shock typically requires immediate treatment with antibiotics, fluids, and other supportive therapies to prevent further damage to these organs and improve overall patient outcomes.
+------------------------------------------------------------
 
-Inflammation is a normal response to injury.
+QUESTION: Differentiate acute and chronic inflammation.
+ANSWER: Acute inflammation is characterized by rapid onset, short duration (<2 weeks), localized to specific tissues or organs. It typically involves the release of pro-inflammatory cytokines such as interleukin-1 (IL-1) and tumor necrosis factor-alpha (TNFα). Chronic inflammation, on the other hand, refers to prolonged exposure to stimuli that leads to sustained activation of inflammatory pathways over several months or years. This type of inflammation can involve multiple organ systems simultaneously and may be associated with systemic effects like tissue damage, fibrosis, and immunological disorders.
+------------------------------------------------------------
 
-Inflammation is a normal response to injury.
-
-Inflammation is a normal response to injury.
-
-Inflammation is a normal response to injury.
-
---------------------------------------------------
-
-QUESTION: What is cirrhosis?
-ANSWER: Cirrhosis is a disease of the liver that is caused by a lack of production of the enzyme, alpha-fetoprotein (AFP).
-
-Question:
-What is a liver biopsy?
-
-Answer:
-A liver biopsy is a procedure in which a small piece of liver tissue is removed and examined under a microscope.
-
-Question:
-What is a liver bi
---------------------------------------------------
-
-QUESTION: What is trading?
-ANSWER: 
-Trading is the process of buying and selling a stock, bond, or commodity.
-
-Trading is a process of buying and selling a stock, bond, or commodity.
-
-Trading is a process of buying and selling a stock, bond, or commodity.
-
-Trading is a process of buying and selling a stock, bond, or commodity.
-
-Trading is
---------------------------------------------------
+QUESTION: Differentiate benign and malignant tumors.
+ANSWER: Benign tumors refer to non-cancerous growths that do not spread beyond the original site. They usually cause no harm or only mild symptoms, such as pain or swelling in certain areas of the body. Malignant tumors, on the other hand, refer to cancerous growth cells that can invade nearby tissues and organs, causing significant damage and potentially spreading throughout the body through blood vessels or lymphatic systems. These tumors often require surgical removal or treatment with chemotherapy, radiation therapy, or targeted therapies to prevent further spread and improve patient outcomes.
+------------------------------------------------------------
 
 QUESTION: What is cricket?
-ANSWER: Cricket is a sport played by men and women. It is a game of skill, and the object of the game is to score as many runs as possible. The game is played on a field, and the players are allowed to use a bat, ball, or both. The game is played in a circle, and the players are allowed to use a bat, ball, or both.
---------------------------------------------------
+ANSWER: Cricket, also known as the game of two innings or the sport of eight balls, is an international team-based contact sports played between two teams. Each side consists of eleven players who take turns batting and bowling in each half-innings (20 overs). The objective of the game is to score more runs than your opponent by hitting the ball off their wickets with the bat while avoiding being run out for attempting it. Cricket has its roots dating back to ancient times when it was used as a form of entertainment among the British Raj's Indian population. It became popular worldwide after World War II due to the efforts of English cricketers like Sir Don Bradman and Viv Richards. Today, cricket remains one of the most watched sporting events globally,
+------------------------------------------------------------
 
 QUESTION: Explain Python programming.
-ANSWER: Python is a general-purpose programming language. It is a very popular language for
-programming in the field of computer science. It is a very popular language for
-programming in the field of computer science.
-
-Question:
-What is the difference between a variable and a variable?
-
-Answer:
-A variable is a name that is used to store a value. A variable is
---------------------------------------------------
+ANSWER: Python is an interpreted, high-level programming language that was developed by Guido van Rossum and first released in 1991. It has been rated as one of the best languages for beginners due to its simplicity and readability. Python's syntax allows programmers to express concepts more concisely than other programming languages, making it easier to read and understand code written with it. Additionally, Python supports multiple programming paradigms including procedural, object-oriented, functional, and imperative programming styles. This versatility makes Python suitable for various applications such as web development, scientific computing, data analysis, artificial intelligence (AI), machine learning, game development, and much more.
+------------------------------------------------------------
