@@ -1,8 +1,10 @@
 .venv/
-
+.env
 results/*
 classifier/__pycache__/*
 models/*
 training/*
 
 backend/__pycache__/
+
+
