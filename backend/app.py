@@ -1,5 +1,6 @@
 from unittest import result
 
+from click import prompt
 from fastapi import FastAPI
 from backend.model_loader import load_llm_pipeline
 from backend.schemas import QuestionRequest
@@ -34,11 +35,12 @@ Answer:
 """
 
     result = pipe(
-    prompt,
-    max_new_tokens=60,
-    do_sample=False,
-    repetition_penalty=1.3,
-    return_full_text=False
+        prompt,
+        max_new_tokens=150,
+        do_sample=False,
+        repetition_penalty=1.2,
+        no_repeat_ngram_size=3,
+        return_full_text=False
     )
 
     answer = result[0]["generated_text"].split("Question:")[0].strip()

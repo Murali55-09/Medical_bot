@@ -1,11 +1,16 @@
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
 from peft import PeftModel
 
-BASE_MODEL = "EleutherAI/gpt-neo-1.3B"
-ADAPTER_PATH = "models/pathology-qlora-v2"
+BASE_MODEL = "Qwen/Qwen2-1.5B-Instruct"  # Base model name (NON-GATED)
+
+# Get the project root directory (parent of backend)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ADAPTER_PATH = os.path.join(PROJECT_ROOT, "models", "pathology-qwen-qlora")
 
 def load_llm_pipeline():
+    print(f"Adapter path: {ADAPTER_PATH}")
     print("Loading base model...")
 
     bnb_config = BitsAndBytesConfig(
@@ -33,5 +38,6 @@ def load_llm_pipeline():
         tokenizer=tokenizer
     )
 
-    print("Model loaded successfully ✅")
+    print("Model loaded successfully")
     return pipe
+
